@@ -3,7 +3,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton';
-import { Company } from '../../types';
+import { Company } from '../../../types';
 
 export interface SearchResultItemProps {
   company: Company,

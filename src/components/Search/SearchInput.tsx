@@ -3,9 +3,9 @@ import TextField from '@mui/material/TextField';
 import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { setSearchResult } from '../redux/actions';
-import { search } from '../utils/alphavantage';
-import { Company } from '../types';
+import { setSearchResult } from '../../redux/actions';
+import { search } from '../../utils/alphavantage';
+import { Company } from '../../types';
 
 const Root = styled.div`
 `;

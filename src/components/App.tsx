@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { ROOT_PATH, DETAILS_PATH, MAIN_WIDTH } from './constants';
+import { ROOT_PATH, DETAILS_PATH, MAIN_WIDTH } from '../constants';
 import { Details } from './Details';
 import { Header } from './Header';
 import { Landing } from './Landing';

@@ -2,8 +2,8 @@ import React, { FC, useCallback } from 'react';
 import List from '@mui/material/List';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { removeFromPortfolio } from '../../redux/actions';
-import { usePortfolio } from '../../redux/selectors';
+import { removeFromPortfolio } from '../../../redux/actions';
+import { usePortfolio } from '../../../redux/selectors';
 import { CompaniesListItem } from './CompaniesListItem';
 
 const Root = styled.div`

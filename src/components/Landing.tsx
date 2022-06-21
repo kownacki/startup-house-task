@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { useQuery } from './redux/selectors';
+import { useQuery } from '../redux/selectors';
 import { Search } from './Search';
 import { Portfolio } from './Portfolio';
 

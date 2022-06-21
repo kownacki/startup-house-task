@@ -2,9 +2,9 @@ import React, { FC, useCallback } from 'react';
 import List from '@mui/material/List';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { addToPortfolio } from '../../redux/actions';
-import { useSearchResult } from '../../redux/selectors';
-import { Company } from '../../types';
+import { addToPortfolio } from '../../../redux/actions';
+import { useSearchResult } from '../../../redux/selectors';
+import { Company } from '../../../types';
 import { SearchResultItem } from './SearchResultItem';
 
 const Root = styled.div`

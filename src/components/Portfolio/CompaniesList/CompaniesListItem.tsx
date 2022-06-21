@@ -5,8 +5,8 @@ import IconButton from '@mui/material/IconButton';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { Link } from 'react-router-dom';
-import { DETAILS_PATH } from '../../constants';
-import { Company } from '../../types';
+import { DETAILS_PATH } from '../../../constants';
+import { Company } from '../../../types';
 
 export interface CompaniesListItemProps {
   company: Company,
