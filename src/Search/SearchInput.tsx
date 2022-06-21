@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
-import { TextField } from '@mui/material';
+import TextField from '@mui/material/TextField';
 import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';

@@ -1,15 +1,18 @@
 import {createStore, applyMiddleware} from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import thunkMiddleware from 'redux-thunk'
-import { SET_QUERY, SET_SEARCH_RESULT } from './actionTypes';
+import { SET_QUERY, SET_SEARCH_RESULT, ADD_TO_PORTFOLIO } from './actionTypes';
 import { Company } from '../types';
 
 export interface StoreState {
   query?: string,
-  searchResult?: Company[],
+  searchResult: Company[],
+  portfolio: Company[],
 }
 
 const initialState: StoreState  = {
+  searchResult: [],
+  portfolio: [],
 };
 
 export const appReducer = createReducer(
@@ -35,6 +38,17 @@ export const appReducer = createReducer(
       return {
         ...state,
         searchResult: resp.payload,
+      };
+    },
+    [ADD_TO_PORTFOLIO]: (
+      state: StoreState,
+      resp: {
+        payload: Company,
+      }
+    ) => {
+      return {
+        ...state,
+        portfolio: [...state.portfolio, resp.payload],
       };
     },
   },
