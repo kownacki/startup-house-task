@@ -17,7 +17,8 @@ export const SearchResultItem: FC<SearchResultItemProps> = ({ company, onAdd }) 
       secondaryAction={
         <IconButton
           aria-label="add"
-          onClick={() => onAdd()}>
+          onClick={() => onAdd()}
+        >
           <AddIcon />
         </IconButton>
       }

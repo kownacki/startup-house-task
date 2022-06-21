@@ -1,7 +1,7 @@
 import {createStore, applyMiddleware} from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import thunkMiddleware from 'redux-thunk'
-import { SET_QUERY, SET_SEARCH_RESULT, ADD_TO_PORTFOLIO } from './actionTypes';
+import { SET_QUERY, SET_SEARCH_RESULT, ADD_TO_PORTFOLIO, REMOVE_FROM_PORTFOLIO } from './actionTypes';
 import { Company } from '../types';
 
 export interface StoreState {
@@ -49,6 +49,20 @@ export const appReducer = createReducer(
       return {
         ...state,
         portfolio: [...state.portfolio, resp.payload],
+      };
+    },
+    [REMOVE_FROM_PORTFOLIO]: (
+      state: StoreState,
+      resp: {
+        payload: { index: number },
+      }
+    ) => {
+      const newPortfolio = [...state.portfolio];
+      newPortfolio.splice(resp.payload.index, 1);
+      console.log(state.portfolio, newPortfolio);
+      return {
+        ...state,
+        portfolio: newPortfolio,
       };
     },
   },
