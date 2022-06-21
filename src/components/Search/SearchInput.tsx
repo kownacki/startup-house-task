@@ -1,4 +1,6 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
+import SearchIcon from '@mui/icons-material/Search';
+import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
@@ -9,17 +11,6 @@ import { Company } from '../../types';
 
 const Root = styled.div`
 `;
-
-// const searchCompanies = debounce((query, dispatch) => {
-//   if (query !== "") {
-//     searchProductsCall(query).then(payload => {
-//       dispatch({ type: SOME_OTHER_TYPE, payload })
-//     });
-//     const result = await search(searchInputText);
-//     console.log('result', result);
-//     dispatch(setQuery(searchInputText));
-//   }
-// }, 200);
 
 export const SearchInput: FC = () => {
   const dispatch = useDispatch();
@@ -46,6 +37,13 @@ export const SearchInput: FC = () => {
         id="outlined-basic"
         label="Company Name"
         variant="outlined"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => setSearchInputText(event.currentTarget.value)}
       />
       <div>
