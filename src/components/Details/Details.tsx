@@ -1,11 +1,13 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { usePortfolio } from '../redux/selectors';
-import { CompanyDetails } from '../types';
-import { overview } from '../utils/alphavantage';
+import { ROOT_PATH } from '../../constants';
+import { usePortfolio } from '../../redux/selectors';
+import { CompanyDetails } from '../../types';
+import { overview } from '../../utils/alphavantage';
 
 type DetailsParams = {
   companyIndex: string,
@@ -38,6 +40,9 @@ export const Details: FC = () => {
 
   return (
     <Root>
+      <Button variant="contained" component={Link} to={ROOT_PATH}>
+        Go Back
+      </Button>
       {loading && (
         <CircularProgress />
       )}
