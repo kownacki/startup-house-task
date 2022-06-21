@@ -24,6 +24,7 @@ export const CompaniesList: FC = () => {
           <CompaniesListItem
             key={company.symbol}
             company={company}
+            index={index}
             onRemove={() => handleRemoveFromPortfolio(index)}
           />
         ))}

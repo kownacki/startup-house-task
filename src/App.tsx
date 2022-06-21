@@ -22,7 +22,7 @@ export const App: FC = () => {
       <Main>
         <Routes>
           <Route path={ROOT_PATH} element={<Landing />} />
-          <Route path={DETAILS_PATH} element={<Details />} />
+          <Route path={`${DETAILS_PATH}/:companyIndex`} element={<Details />} />
         </Routes>
       </Main>
     </Root>
