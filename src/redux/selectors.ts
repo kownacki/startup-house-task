@@ -3,3 +3,6 @@ import { RootState } from './store';
 
 const selectQuery = (state: RootState) => state.query;
 export const useQuery = () => useSelector(selectQuery);
+
+const selectSearchResult = (state: RootState) => state.searchResult;
+export const useSearchResult = () => useSelector(selectSearchResult);

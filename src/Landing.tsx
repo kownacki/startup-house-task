@@ -15,6 +15,9 @@ export const Landing: FC = () => {
       <div>
         { query }
       </div>
+      <div>
+
+      </div>
     </Root>
   );
 };
