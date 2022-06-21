@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { HEADER_HEIGHT, MAIN_WIDTH } from './contants';
 
 const Root = styled.header`
-  background: black;
-  color: white;
+  border-bottom: solid 1px black;
   font-size: 30px;
   font-family: monospace;
   height: ${HEADER_HEIGHT}px;
@@ -21,6 +20,7 @@ export const Header: FC = () => {
   return (
     <Root>
       <Container>
+        SDH Frontend Homework
       </Container>
     </Root>
   );
