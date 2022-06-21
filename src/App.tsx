@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import Button from '@mui/material/Button';
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { ROOT_PATH, DETAILS_PATH, MAIN_WIDTH } from './contants';
@@ -21,7 +20,6 @@ export const App: FC = () => {
     <Root>
       <Header />
       <Main>
-        <Button variant="contained">Hello World</Button>
         <Routes>
           <Route path={ROOT_PATH} element={<Landing />} />
           <Route path={DETAILS_PATH} element={<Details />} />
