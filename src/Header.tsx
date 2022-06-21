@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { HEADER_HEIGHT, MAIN_WIDTH } from './contants';
+import { HEADER_HEIGHT, MAIN_WIDTH } from './constants';
 
 const Root = styled.header`
   border-bottom: solid 1px black;
