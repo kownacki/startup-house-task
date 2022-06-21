@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { setSearchResult } from '../../redux/actions';
+import { setQuery, setSearchResult } from '../../redux/actions';
 import { search } from '../../utils/alphavantage';
 import { Company } from '../../types';
 
@@ -17,6 +17,7 @@ export const SearchInput: FC = () => {
   const [searchInputText, setSearchInputText] = useState('');
 
   const searchCompanies = useCallback(debounce(async (query: string) => {
+    dispatch(setQuery(query));
     if (query) {
       const result = await search(query);
       if (result.isSuccess) {
@@ -46,9 +47,6 @@ export const SearchInput: FC = () => {
         }}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => setSearchInputText(event.currentTarget.value)}
       />
-      <div>
-        { searchInputText }
-      </div>
     </Root>
   );
 };

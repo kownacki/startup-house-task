@@ -6,10 +6,16 @@ import { SearchResult } from './SearchResult';
 const Root = styled.div`
 `;
 
+const SearchInputContainer = styled.div`
+  margin-bottom: 20px;
+`;
+
 export const Search: FC = () => {
   return (
     <Root>
-      <SearchInput />
+      <SearchInputContainer>
+        <SearchInput />
+      </SearchInputContainer>
       <SearchResult />
     </Root>
   );
