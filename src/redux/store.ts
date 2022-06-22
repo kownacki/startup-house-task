@@ -59,7 +59,6 @@ export const appReducer = createReducer(
     ) => {
       const newPortfolio = [...state.portfolio];
       newPortfolio.splice(resp.payload.index, 1);
-      console.log(state.portfolio, newPortfolio);
       return {
         ...state,
         portfolio: newPortfolio,
