@@ -3,13 +3,6 @@ body {
   font: 20px Arial;
   line-height: 1.5em;
   margin: 0;
-  --primary-color: black;
-  --light-grey: #F2F2F2;
-  --dark-grey: #E0E0E0;
-}
-ul {
-  list-style: none;
-  padding: 0;
 }
 h1, h2, h3, h4 {
   word-break: break-word;

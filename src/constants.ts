@@ -11,3 +11,7 @@ export const RWD_BREAKPOINTS = {
   2: 839,
   3: 599,
 };
+
+export const COLORS = {
+  lightGrey: '#F2F2F2',
+};
