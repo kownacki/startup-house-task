@@ -1,7 +1,6 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { ROOT_PATH } from '../../constants';
@@ -31,7 +30,6 @@ const getCompany = (portfolio: Company[], companyIndex?: string) => {
 
 export const Details: FC = () => {
   const { companyIndex } = useParams<DetailsParams>();
-  const dispatch = useDispatch();
   const portfolio = usePortfolio();
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState<CompanyDetails>();
@@ -45,13 +43,13 @@ export const Details: FC = () => {
       setDetails(result.details);
       setLoading(false);
     }
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     if (company) {
       getOverview(company.symbol);
     }
-  }, [company]);
+  }, [company, getOverview]);
 
   return (
     <Root>
