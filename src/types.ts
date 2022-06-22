@@ -4,6 +4,7 @@ export interface Company {
 }
 
 export interface CompanyDetails {
+  address: string
   description: string,
   marketCapitalization: string,
 }

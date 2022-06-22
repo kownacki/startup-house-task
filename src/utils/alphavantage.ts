@@ -28,6 +28,7 @@ export const search = async (query: string): Promise<SearchResult> => {
 
 const parseOverviewResponseJson = (responseJson: OverviewResponseJson): CompanyDetails => {
   return {
+    address: responseJson.Address,
     description: responseJson.Description,
     marketCapitalization: responseJson.MarketCapitalization,
   };

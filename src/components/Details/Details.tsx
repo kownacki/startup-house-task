@@ -6,22 +6,37 @@ import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { ROOT_PATH } from '../../constants';
 import { usePortfolio } from '../../redux/selectors';
-import { CompanyDetails } from '../../types';
+import { Company, CompanyDetails } from '../../types';
 import { overview } from '../../utils/alphavantage';
+import { DetailsMain } from './DetailsMain';
 
 type DetailsParams = {
   companyIndex: string,
 };
 
 const Root = styled.div`
+  margin-top: 30px;
 `;
+
+const ButtonContainer = styled.div`
+  margin-bottom: 20px;
+`;
+
+const getCompany = (portfolio: Company[], companyIndex?: string) => {
+  if (companyIndex && portfolio.length > 0) {
+    return portfolio[Number(companyIndex)];
+  }
+  return undefined;
+};
 
 export const Details: FC = () => {
   const { companyIndex } = useParams<DetailsParams>();
   const dispatch = useDispatch();
   const portfolio = usePortfolio();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState<CompanyDetails>();
+
+  const company = getCompany(portfolio, companyIndex);
 
   const getOverview = useCallback(async (symbol: string) => {
     setLoading(true);
@@ -33,24 +48,26 @@ export const Details: FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (companyIndex && portfolio.length > 0) {
-      getOverview(portfolio[Number(companyIndex)].symbol);
+    if (company) {
+      getOverview(company.symbol);
     }
-  }, [companyIndex, portfolio]);
+  }, [company]);
 
   return (
     <Root>
-      <Button variant="contained" component={Link} to={ROOT_PATH}>
-        Go Back
-      </Button>
+      <ButtonContainer>
+        <Button variant="contained" component={Link} to={ROOT_PATH}>
+          Go Back
+        </Button>
+      </ButtonContainer>
       {loading && (
         <CircularProgress />
       )}
       {!loading && (
-        <div>
-          <div>{details?.marketCapitalization}</div>
-          <div>{details?.description}</div>
-        </div>
+        <DetailsMain
+          company={company as Company}
+          details={details as CompanyDetails}
+        />
       )}
     </Root>
   );

@@ -10,6 +10,7 @@ export interface SearchResponseJson {
 }
 
 export interface OverviewResponseJson {
+  Address: string,
   Description: string,
   MarketCapitalization: string,
 }

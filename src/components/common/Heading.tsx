@@ -9,7 +9,6 @@ interface HeadingProps {
   children?: ReactNode,
 }
 
-
 export const Heading: FC<HeadingProps> = ({ children}) => {
   return (
     <Root>
