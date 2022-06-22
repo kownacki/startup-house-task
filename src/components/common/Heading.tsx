@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Root = styled.div`
-  font-size: 18px;
+  font-size: 20px;
 `;
 
 interface HeadingProps {
