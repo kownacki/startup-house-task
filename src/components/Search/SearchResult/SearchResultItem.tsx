@@ -23,7 +23,7 @@ export const SearchResultItem: FC<SearchResultItemProps> = ({ company, onAdd }) 
         </IconButton>
       }
     >
-      <ListItemText primary={`${company.symbol} ${company.name}`} />
+      <ListItemText primary={`${company.symbol} - ${company.name}`} />
     </ListItem>
   );
 };

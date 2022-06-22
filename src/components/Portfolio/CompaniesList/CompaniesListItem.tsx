@@ -34,7 +34,7 @@ export const CompaniesListItem: FC<CompaniesListItemProps> = ({ company, index, 
       }
     >
       <ListItemButton component={Link} to={`${DETAILS_PATH}/${index}`}>
-        <ListItemText primary={`${company.symbol} ${company.name}`} />
+        <ListItemText primary={`${company.symbol} - ${company.name}`} />
       </ListItemButton>
     </StyledListItem>
   );
