@@ -20,7 +20,7 @@ const getCompaniesFromSearchResponse = async (response: Response): Promise<Compa
 
 export const search = async (query: string): Promise<SearchResult> => {
   // todo use env
-  const response = await fetch(`${ALPHAVANTAGE_API_URL}query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${'5UID986T5QBYBMON'}`);
+  const response = await fetch(`${ALPHAVANTAGE_API_URL}query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${process.env.ALPHAVANTAGE_API_KEY}`);
   return response.status === 200
     ? {companies: await getCompaniesFromSearchResponse(response), isSuccess: true}
     : {isSuccess: false}
@@ -41,7 +41,7 @@ const getDetailsFromOverviewResponse = async (response: Response): Promise<Compa
 
 export const overview = async (symbol: string): Promise<OverviewResult> => {
   // todo use env
-  const response = await fetch(`${ALPHAVANTAGE_API_URL}query?function=OVERVIEW&symbol=${symbol}&apikey=${'5UID986T5QBYBMON'}`);
+  const response = await fetch(`${ALPHAVANTAGE_API_URL}query?function=OVERVIEW&symbol=${symbol}&apikey=${process.env.ALPHAVANTAGE_API_KEY}`);
   return response.status === 200
     ? {details: await getDetailsFromOverviewResponse(response), isSuccess: true}
     : {isSuccess: false}
