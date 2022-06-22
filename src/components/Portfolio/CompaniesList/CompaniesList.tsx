@@ -20,6 +20,11 @@ export const CompaniesList: FC = () => {
   return (
     <Root>
       <List>
+        {
+          portfolio.length === 0 && (
+            <div>No items in portfolio</div>
+          )
+        }
         {portfolio.map((company, index) => (
           <CompaniesListItem
             key={company.symbol}
