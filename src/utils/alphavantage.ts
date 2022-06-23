@@ -43,8 +43,8 @@ const getDetailsFromOverviewResponse = async (response: Response): Promise<Compa
   return parseOverviewResponseJson(json);
 };
 
-export const overview = async (symbol: string): Promise<OverviewResult> => {
-  const response = await fetch(createApiQueryUrl('OVERVIEW', symbol));
+export const overview = async (query: string): Promise<OverviewResult> => {
+  const response = await fetch(createApiQueryUrl('OVERVIEW', query));
   return response.status === 200
     ? {details: await getDetailsFromOverviewResponse(response), isSuccess: true}
     : {isSuccess: false};
