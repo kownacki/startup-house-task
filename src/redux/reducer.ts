@@ -8,11 +8,10 @@ export interface StoreState {
   portfolio: Company[],
 }
 
-const initialState: StoreState  = {
+export const initialState: StoreState = {
   searchResult: [],
   portfolio: [],
 };
-
 
 export const reducer = createReducer(
   initialState,
