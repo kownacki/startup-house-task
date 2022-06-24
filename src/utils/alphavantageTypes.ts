@@ -6,7 +6,7 @@ export interface SearchBestMatchesItem {
 }
 
 export interface SearchResponseJson {
-  bestMatches: SearchBestMatchesItem[],
+  bestMatches?: SearchBestMatchesItem[],
 }
 
 export interface OverviewResponseJson {

@@ -15,7 +15,7 @@ const parseSearchBestMatchesItem = (bestMatchesItem: SearchBestMatchesItem): Com
 };
 
 const parseSearchResponseJson = (responseJson: SearchResponseJson): Company[] => {
-  return responseJson.bestMatches.map(parseSearchBestMatchesItem) ;
+  return (responseJson.bestMatches || []).map(parseSearchBestMatchesItem) ;
 };
 
 const getCompaniesFromSearchResponse = async (response: Response): Promise<Company[]> => {
