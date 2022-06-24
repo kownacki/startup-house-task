@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { Company, CompanyDetails } from '../../types';
+import { formatMarketCapitalization } from '../../utils/general';
 
 const Root = styled.div`
 `;
@@ -41,7 +42,7 @@ export const DetailsMain: FC<DetailsMainProps> = ({ company, details }) => {
         <SmallDetailsContainerLabel>
           Market Capitalization:
         </SmallDetailsContainerLabel>
-        {details.marketCapitalization || 'NOT FOUND'}
+        {details.marketCapitalization ? formatMarketCapitalization(Number(details.marketCapitalization)) : 'NOT FOUND'}
       </SmallDetailsContainer>
       <DescriptionContainer>
         {details.description || 'DESCRIPTION NOT FOUND'}

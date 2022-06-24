@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { usePortfolio } from '../../redux/selectors';
 import { asMock } from '../../testutils/asMock';
 import { overview } from '../../utils/alphavantage';
+import { formatMarketCapitalization } from '../../utils/general';
 import { Details } from './Details';
 
 jest.mock('react-router-dom');
@@ -12,11 +13,12 @@ jest.mock('../../redux/selectors');
 
 describe('Details', () => {
   it('should load details', async () => {
+    const marketCapStub = '12324242223223';
     asMock(overview).mockResolvedValue({
       details: {
         address: 'ADDRESS_STUB',
         description: 'DESC_STUB',
-        marketCapitalization: 'CAP_STUB',
+        marketCapitalization: marketCapStub,
       },
       isSuccess: true,
     });
@@ -30,7 +32,7 @@ describe('Details', () => {
     const name = await screen.findByText('NAME_STUB');
     const address = await screen.findByText('ADDRESS_STUB');
     const desc = await screen.findByText('DESC_STUB');
-    const cap = await screen.findByText('CAP_STUB');
+    const cap = await screen.findByText(formatMarketCapitalization(Number(marketCapStub)));
     expect(name).toBeInTheDocument();
     expect(address).toBeInTheDocument();
     expect(desc).toBeInTheDocument();
