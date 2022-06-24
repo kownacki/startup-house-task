@@ -29,7 +29,7 @@ export const SearchResult: FC = () => {
     <Root>
       {query && (
         <Heading>
-          Search Results
+          Search Results: {searchResult.length}
         </Heading>
       )}
       <List>
