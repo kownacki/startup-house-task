@@ -35,16 +35,16 @@ export const DetailsMain: FC<DetailsMainProps> = ({ company, details }) => {
         <SmallDetailsContainerLabel>
           Address:
         </SmallDetailsContainerLabel>
-        {details.address}
+        {details.address || 'NOT FOUND'}
       </SmallDetailsContainer>
       <SmallDetailsContainer>
         <SmallDetailsContainerLabel>
           Market Capitalization:
         </SmallDetailsContainerLabel>
-        {details.marketCapitalization}
+        {details.marketCapitalization || 'NOT FOUND'}
       </SmallDetailsContainer>
       <DescriptionContainer>
-        {details.description}
+        {details.description || 'DESCRIPTION NOT FOUND'}
       </DescriptionContainer>
     </Root>
   );
