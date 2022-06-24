@@ -41,8 +41,8 @@ export const Details: FC = () => {
     const result = await overview(symbol);
     if (result.isSuccess) {
       setDetails(result.details);
-      setLoading(false);
     }
+    setLoading(false);
   }, []);
 
   useEffect(() => {
