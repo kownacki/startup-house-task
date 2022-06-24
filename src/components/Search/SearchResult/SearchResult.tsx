@@ -11,6 +11,10 @@ import { Heading } from '../../common/Heading';
 const Root = styled.div`
 `;
 
+const portfolioIncludesCompany = (portfolio: Company[], company: Company) => {
+  return portfolio.find((portfolioCompany) => portfolioCompany.symbol === company.symbol);
+};
+
 export const SearchResult: FC = () => {
   const dispatch = useDispatch();
   const query = useQuery();
@@ -18,7 +22,7 @@ export const SearchResult: FC = () => {
   const searchResult = useSearchResult();
 
   const handleAddToPortfolio = useCallback((company: Company) => {
-    if (!portfolio.find((portfolioCompany) => portfolioCompany.symbol === company.symbol)) {
+    if (!portfolioIncludesCompany(portfolio, company)) {
       dispatch(addToPortfolio(company));
     } else {
       alert('You cannot add the same company twice to your portfolio');
