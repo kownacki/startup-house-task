@@ -23,6 +23,9 @@ export const SearchInput: FC = () => {
       if (result.isSuccess) {
         dispatch(setSearchResult(result.companies as Company[]));
       }
+      else {
+        alert('Unknown error while fetching search result. Please try later');
+      }
     }
   }, 300), [dispatch]);
 

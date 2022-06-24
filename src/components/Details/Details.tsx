@@ -42,6 +42,9 @@ export const Details: FC = () => {
     if (result.isSuccess) {
       setDetails(result.details);
     }
+    else {
+      alert('Unknown error while fetching company details. Please try later');
+    }
     setLoading(false);
   }, []);
 
