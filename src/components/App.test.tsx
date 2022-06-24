@@ -1,16 +1,20 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';
+
+const MockApp = () => {
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+};
 
 describe('App', () => {
   it('renders', () => {
-    const history = createMemoryHistory();
     render(
-      <Router location={history.location} navigator={history}>
-        <App />
-      </Router>,
+      <MockApp />
     )
   });
 });
