@@ -23,13 +23,21 @@ describe('alphavantage', () => {
         ],
       }
       fetchMock.mockResponseOnce(JSON.stringify(responseMock), {status: 200});
-      await expect(search(queryStub)).resolves.toEqual({isSuccess: true, companies: companiesStub});
+      await expect(search(queryStub)).resolves.toEqual({
+        data: {
+          companies: companiesStub,
+        },
+        isSuccess: true,
+      });
     });
 
     it('returns fail when fetch failed', async () => {
       const queryStub = 'QUERY_STUB';
       fetchMock.mockResponseOnce('', {status: 400});
-      await expect(search(queryStub)).resolves.toEqual({isSuccess: false});
+      await expect(search(queryStub)).resolves.toEqual({
+        data: {},
+        isSuccess: false
+      });
     });
   });
 });

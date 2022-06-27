@@ -24,7 +24,9 @@ describe('SearchInput', () => {
 
     const companiesMock = [{} as Company];
     asMock(search).mockResolvedValue({
-      companies: companiesMock,
+      data: {
+        companies: companiesMock,
+      },
       isSuccess: true,
     });
 

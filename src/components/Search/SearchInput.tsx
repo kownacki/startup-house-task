@@ -21,7 +21,10 @@ export const SearchInput: FC = () => {
     if (query) {
       const result = await search(query);
       if (result.isSuccess) {
-        dispatch(setSearchResult(result.companies as Company[]));
+        if (result.data.note) {
+          alert(`API sent a note: ${result.data.note}`);
+        }
+        dispatch(setSearchResult(result.data.companies as Company[]));
       }
       else {
         alert('Unknown error while fetching search result. Please try later');

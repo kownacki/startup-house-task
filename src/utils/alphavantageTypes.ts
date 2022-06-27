@@ -7,10 +7,16 @@ export interface SearchBestMatchesItem {
 
 export interface SearchResponseJson {
   bestMatches?: SearchBestMatchesItem[],
+  Note?: string,
+}
+
+export interface SearchResultData {
+  companies?: Company[],
+  note?: string,
 }
 
 export interface SearchResult {
-  companies?: Company[],
+  data: SearchResultData,
   isSuccess: boolean,
 }
 

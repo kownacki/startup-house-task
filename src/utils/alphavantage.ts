@@ -1,12 +1,13 @@
 import { ALPHAVANTAGE_API_URL} from '../constants';
 import { Company, CompanyDetails } from '../types';
 import {
-  OverviewResponseJson,
   SearchBestMatchesItem,
   SearchResponseJson,
   SearchResult,
+  SearchResultData,
+  OverviewResponseJson,
   OverviewResult,
-  OverviewResultData
+  OverviewResultData,
 } from './alphavantageTypes';
 
 const createApiQueryUrl = (fun: 'SYMBOL_SEARCH' | 'OVERVIEW', query: string) => {
@@ -21,11 +22,18 @@ const parseSearchBestMatchesItem = (bestMatchesItem: SearchBestMatchesItem): Com
   };
 };
 
-const parseSearchResponseJson = (responseJson: SearchResponseJson): Company[] => {
-  return (responseJson.bestMatches || []).map(parseSearchBestMatchesItem) ;
+const parseSearchResponseJson = (responseJson: SearchResponseJson): SearchResultData => {
+  // responseJson either consists of 'Note' or bestMatches array
+  const bestMatches = responseJson.Note
+    ? undefined
+    : responseJson.bestMatches;
+  return {
+    companies: (bestMatches || []).map(parseSearchBestMatchesItem),
+    note: responseJson.Note,
+  } ;
 };
 
-const getCompaniesFromSearchResponse = async (response: Response): Promise<Company[]> => {
+const getDataFromSearchResponse = async (response: Response): Promise<SearchResultData> => {
   const json = await response.json() as SearchResponseJson;
   return parseSearchResponseJson(json);
 };
@@ -33,8 +41,14 @@ const getCompaniesFromSearchResponse = async (response: Response): Promise<Compa
 export const search = async (query: string): Promise<SearchResult> => {
   const response = await fetch(createApiQueryUrl('SYMBOL_SEARCH', query));
   return response.status === 200
-    ? {companies: await getCompaniesFromSearchResponse(response), isSuccess: true}
-    : {isSuccess: false};
+    ? {
+      data: await getDataFromSearchResponse(response),
+      isSuccess: true,
+    }
+    : {
+      data: {},
+      isSuccess: false,
+    };
 };
 
 const parseOverviewResponseJson = (responseJson: OverviewResponseJson): OverviewResultData => {
