@@ -1,6 +1,13 @@
 import { ALPHAVANTAGE_API_URL} from '../constants';
 import { Company, CompanyDetails } from '../types';
-import { OverviewResponseJson, SearchBestMatchesItem, SearchResponseJson, SearchResult, OverviewResult} from './alphavantageTypes';
+import {
+  OverviewResponseJson,
+  SearchBestMatchesItem,
+  SearchResponseJson,
+  SearchResult,
+  OverviewResult,
+  OverviewResultData
+} from './alphavantageTypes';
 
 const createApiQueryUrl = (fun: 'SYMBOL_SEARCH' | 'OVERVIEW', query: string) => {
   const queryArgName = fun === 'SYMBOL_SEARCH' ? 'keywords' : 'symbol';
@@ -30,15 +37,22 @@ export const search = async (query: string): Promise<SearchResult> => {
     : {isSuccess: false};
 };
 
-const parseOverviewResponseJson = (responseJson: OverviewResponseJson): CompanyDetails => {
+const parseOverviewResponseJson = (responseJson: OverviewResponseJson): OverviewResultData => {
+  // responseJson either consists of 'Note' or company data
+  const details = responseJson.Note
+    ? undefined
+    : {
+      address: responseJson.Address,
+      description: responseJson.Description,
+      marketCapitalization: responseJson.MarketCapitalization,
+    } as CompanyDetails;
   return {
-    address: responseJson.Address,
-    description: responseJson.Description,
-    marketCapitalization: responseJson.MarketCapitalization,
+    details,
+    note: responseJson.Note,
   };
 };
 
-const getDetailsFromOverviewResponse = async (response: Response): Promise<CompanyDetails> => {
+const getDataFromOverviewResponse = async (response: Response): Promise<OverviewResultData> => {
   const json = await response.json() as OverviewResponseJson;
   return parseOverviewResponseJson(json);
 };
@@ -46,6 +60,12 @@ const getDetailsFromOverviewResponse = async (response: Response): Promise<Compa
 export const overview = async (query: string): Promise<OverviewResult> => {
   const response = await fetch(createApiQueryUrl('OVERVIEW', query));
   return response.status === 200
-    ? {details: await getDetailsFromOverviewResponse(response), isSuccess: true}
-    : {isSuccess: false};
+    ? {
+      data: await getDataFromOverviewResponse(response),
+      isSuccess: true,
+    }
+    : {
+      data: {},
+      isSuccess: false,
+    };
 };

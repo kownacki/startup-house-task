@@ -40,7 +40,10 @@ export const Details: FC = () => {
     setLoading(true);
     const result = await overview(symbol);
     if (result.isSuccess) {
-      setDetails(result.details);
+      if (result.data.note) {
+        alert(`API sent a note: ${result.data.note}`);
+      }
+      setDetails(result.data.details);
     }
     else {
       alert('Unknown error while fetching company details. Please try later');
@@ -67,7 +70,7 @@ export const Details: FC = () => {
       {!loading && (
         <DetailsMain
           company={company as Company}
-          details={details as CompanyDetails}
+          details={details}
         />
       )}
     </Root>

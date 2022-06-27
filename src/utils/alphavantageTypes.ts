@@ -9,18 +9,24 @@ export interface SearchResponseJson {
   bestMatches?: SearchBestMatchesItem[],
 }
 
-export interface OverviewResponseJson {
-  Address: string,
-  Description: string,
-  MarketCapitalization: string,
-}
-
 export interface SearchResult {
   companies?: Company[],
   isSuccess: boolean,
 }
 
-export interface OverviewResult {
+export interface OverviewResponseJson {
+  Address?: string,
+  Description?: string,
+  MarketCapitalization?: string,
+  Note?: string,
+}
+
+export interface OverviewResultData {
   details?: CompanyDetails,
+  note?: string,
+}
+
+export interface OverviewResult {
+  data: OverviewResultData,
   isSuccess: boolean,
 }

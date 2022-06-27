@@ -15,10 +15,12 @@ describe('Details', () => {
   it('should load details', async () => {
     const marketCapStub = '12324242223223';
     asMock(overview).mockResolvedValue({
-      details: {
-        address: 'ADDRESS_STUB',
-        description: 'DESC_STUB',
-        marketCapitalization: marketCapStub,
+      data: {
+        details: {
+          address: 'ADDRESS_STUB',
+          description: 'DESC_STUB',
+          marketCapitalization: marketCapStub,
+        },
       },
       isSuccess: true,
     });

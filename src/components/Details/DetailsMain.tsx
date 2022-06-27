@@ -23,7 +23,7 @@ const DescriptionContainer = styled.div`
 
 interface DetailsMainProps {
   company: Company,
-  details: CompanyDetails,
+  details?: CompanyDetails,
 }
 
 export const DetailsMain: FC<DetailsMainProps> = ({ company, details }) => {
@@ -36,16 +36,16 @@ export const DetailsMain: FC<DetailsMainProps> = ({ company, details }) => {
         <SmallDetailsContainerLabel>
           Address:
         </SmallDetailsContainerLabel>
-        {details.address || 'NOT FOUND'}
+        {details?.address || 'NOT FOUND'}
       </SmallDetailsContainer>
       <SmallDetailsContainer>
         <SmallDetailsContainerLabel>
           Market Capitalization:
         </SmallDetailsContainerLabel>
-        {details.marketCapitalization ? formatMarketCapitalization(Number(details.marketCapitalization)) : 'NOT FOUND'}
+        {details?.marketCapitalization ? formatMarketCapitalization(Number(details.marketCapitalization)) : 'NOT FOUND'}
       </SmallDetailsContainer>
       <DescriptionContainer>
-        {details.description || 'DESCRIPTION NOT FOUND'}
+        {details?.description || 'DESCRIPTION NOT FOUND'}
       </DescriptionContainer>
     </Root>
   );
